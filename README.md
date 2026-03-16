@@ -111,4 +111,4 @@ Please contact the project maintainer directly via the internal messaging system
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-Developed with ❤️ for the future of Agriculture.
+Developed by Salamoon Hossain Snigdho for the future of Agricore.
