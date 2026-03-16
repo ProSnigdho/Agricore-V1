@@ -1,6 +1,5 @@
-# 🌾 AgriCore V1: Smart Agricultural Management System
+# AgriCore V1: Smart Agricore Management System
 
-![AgriCore Logo](https://raw.githubusercontent.com/lucide-react/lucide/main/icons/leaf.svg)
 
 AgriCore is a modern, full-stack enterprise solution designed to streamline agricultural operations through secure user management, real-time activity tracking, and an intuitive administrative control panel. Built with a focus on security and performance, it provides a seamless experience for both farmers (Customers) and system operators (Admins).
 
