@@ -1,0 +1,236 @@
+{
+	"info": {
+		"_postman_id": "c6a2f0e1-7d2d-4b8a-8c9e-5b1a2c3d4e5f",
+		"name": "AgriCore Authentication System",
+		"description": "API collection for AgriCore Authentication & Authorization system.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login (Email)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@agricore.com\",\n    \"password\": \"adminpassword\",\n    \"role\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/login/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login",
+								""
+							]
+						},
+						"description": "Login with email and password to receive JWT tokens."
+					},
+					"response": []
+				},
+				{
+					"name": "Register (Customer)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"customer@example.com\",\n    \"password\": \"customerpass123\",\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/register/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register",
+								""
+							]
+						},
+						"description": "Register a new customer account."
+					},
+					"response": []
+				},
+				{
+					"name": "Google Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"YOUR_GOOGLE_ID_TOKEN\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/google/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"google",
+								""
+							]
+						},
+						"description": "Verify Google ID token and return JWT tokens."
+					},
+					"response": []
+				},
+				{
+					"name": "Token Refresh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh\": \"YOUR_REFRESH_TOKEN\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/token/refresh/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"token",
+								"refresh",
+								""
+							]
+						},
+						"description": "Refresh an expired access token."
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh\": \"YOUR_REFRESH_TOKEN\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/logout/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout",
+								""
+							]
+						},
+						"description": "Invalidate the current session."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Protected Routes",
+			"item": [
+				{
+					"name": "Verify Token / Get User Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/verify/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"verify",
+								""
+							]
+						},
+						"description": "Verify the current access token and get user details."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "accessToken",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

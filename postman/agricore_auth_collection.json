@@ -1,0 +1,209 @@
+{
+	"info": {
+		"_postman_id": "c1f7a2a1-e493-4e8c-859a-f0b3e7d5c9e2",
+		"name": "AgriCore Authentication System",
+		"description": "API collection for AgriCore secure auth and RBAC system.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"customer@example.com\",\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"password\": \"SecurePass123!\",\n    \"password_confirm\": \"SecurePass123!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/auth/register/"
+					}
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"customer@example.com\",\n    \"password\": \"SecurePass123!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/auth/login/"
+					}
+				},
+				{
+					"name": "Google Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"PASTE_GOOGLE_ID_TOKEN_HERE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/auth/google/"
+					}
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh\": \"PASTE_REFRESH_TOKEN_HERE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/auth/token/refresh/"
+					}
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh\": \"PASTE_REFRESH_TOKEN_HERE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/auth/logout/"
+					}
+				},
+				{
+					"name": "User Activities",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/auth/activities/?user_id=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"activities",
+								""
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": ""
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8000/api/users/profile/"
+					}
+				},
+				{
+					"name": "Update User Role (Admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 1,\n    \"role\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/users/admin/update-role/"
+					}
+				},
+				{
+					"name": "Customer Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8000/api/users/customer/dashboard/"
+					}
+				},
+				{
+					"name": "Admin Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8000/api/users/admin/dashboard/"
+					}
+				}
+			]
+		}
+	]
+}
